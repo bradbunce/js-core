@@ -154,6 +154,7 @@ flowchart LR
     sdk-server[shared/sdk-server]
     sdk-server-edge[shared/sdk-server-edge]
     akamai-edgeworker[shared/akamai-edgeworker-sdk]
+    openfeature-server-common[shared/openfeature-server-common]
 
     %% SDK packages
     server-node[sdk/server-node]
@@ -167,6 +168,7 @@ flowchart LR
     server-ai[sdk/server-ai]
     react[sdk/react]
     shopify-oxygen[sdk/shopify-oxygen]
+    openfeature-node-server[sdk/openfeature-node-server]
 
     %% Store packages
     redis[store/node-server-sdk-redis]
@@ -201,7 +203,10 @@ flowchart LR
     
     akamai-edgeworker --> akamai-base
     akamai-edgeworker --> akamai-edgekv
-    
+
+    openfeature-server-common --> openfeature-node-server
+    server-node --> openfeature-node-server
+
     %% Dependencies for store packages
     sdk-server --> redis
     sdk-server --> dynamodb
@@ -212,8 +217,8 @@ flowchart LR
     %% Dependencies for tooling packages
     react-native -.-> jest
     
-    class common,sdk-client,sdk-server,sdk-server-edge,akamai-edgeworker shared
-    class server-node,cloudflare,fastly,react-native,browser,vercel,akamai-base,akamai-edgekv,server-ai,react,shopify-oxygen sdk
+    class common,sdk-client,sdk-server,sdk-server-edge,akamai-edgeworker,openfeature-server-common shared
+    class server-node,cloudflare,fastly,react-native,browser,vercel,akamai-base,akamai-edgekv,server-ai,react,shopify-oxygen,openfeature-node-server sdk
     class redis,dynamodb store
     class node-otel telemetry
     class jest tooling
@@ -227,9 +232,10 @@ There are a number of categories of packages in the monorepo:
    - `shared/sdk-server`: Common code for server-side SDKs
    - `shared/sdk-server-edge`: Common code for edge SDKs
    - `shared/akamai-edgeworker-sdk`: Common code for Akamai edge worker SDKs
+   - `shared/openfeature-server-common`: Common code for server-side OpenFeature providers
 
 2. **SDK packages** (blue): Actual SDK implementations for different platforms
-   - Browser, React Native, Server Node, Cloudflare, Fastly, Vercel, Akamai, etc.
+   - Browser, React Native, Server Node, Cloudflare, Fastly, Vercel, Akamai, OpenFeature, etc.
 
 3. **Store packages** (green): Persistent storage implementations
    - Redis and DynamoDB implementations

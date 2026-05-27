@@ -18,6 +18,7 @@ This includes shared libraries, used by SDKs and other tools, as well as SDKs.
 | [@launchdarkly/server-sdk-ai](packages/sdk/server-ai/README.md)                | [![NPM][sdk-server-ai-npm-badge]][sdk-server-ai-npm-link]         | [server-ai][package-sdk-server-ai-issues]         | [![Actions Status][sdk-server-ai-ci-badge]][sdk-server-ai-ci]         |
 | [@launchdarkly/shopify-oxygen-sdk](packages/sdk/shopify-oxygen/README.md)      | [![NPM][sdk-shopify-oxygen-npm-badge]][sdk-shopify-oxygen-npm-link] | [Shopify Oxygen][package-sdk-shopify-oxygen-issues] | [![Actions Status][sdk-shopify-oxygen-ci-badge]][sdk-shopify-oxygen-ci] |
 | [@launchdarkly/react-sdk](packages/sdk/react/README.md)                       | [![NPM][sdk-react-npm-badge]][sdk-react-npm-link]                   | [React][package-sdk-react-issues]                   | [![Actions Status][sdk-react-ci-badge]][sdk-react-ci]                   |
+| [@launchdarkly/openfeature-node-server](packages/sdk/openfeature-node-server/README.md) | [![NPM][sdk-openfeature-node-server-npm-badge]][sdk-openfeature-node-server-npm-link] | [OpenFeature Node Server][package-sdk-openfeature-node-server-issues] | [![Actions Status][sdk-openfeature-node-server-ci-badge]][sdk-openfeature-node-server-ci] |
 <!--| [@launchdarkly/browser](packages/sdk/combined-browser/README.md)                  | [![NPM][sdk-combined-browser-npm-badge]][sdk-browser-npm-link]             | [Combined Browser][package-sdk-combined-browser-issues]             | [![Actions Status][sdk-combined-browser-ci-badge]][sdk-combined-browser-ci]             |-->
 
 | Shared packages                                                                      | npm                                                                       | issues                                                      | tests                                                                           |
@@ -26,6 +27,7 @@ This includes shared libraries, used by SDKs and other tools, as well as SDKs.
 | [@launchdarkly/js-client-sdk-common](packages/shared/sdk-client/README.md)           | [![NPM][js-client-sdk-common-npm-badge]][js-client-sdk-common-npm-link]   | [Common Client][package-shared-sdk-client-issues]           | [![Actions Status][shared-sdk-client-ci-badge]][shared-sdk-client-ci]           |
 | [@launchdarkly/js-server-sdk-common](packages/shared/sdk-server/README.md)           | [![NPM][js-server-sdk-common-npm-badge]][js-server-sdk-common-npm-link]   | [Common Server][package-shared-sdk-server-issues]           | [![Actions Status][shared-sdk-server-ci-badge]][shared-sdk-server-ci]           |
 | [@launchdarkly/js-server-sdk-common-edge](packages/shared/sdk-server-edge/README.md) | [![NPM][js-server-sdk-common-edge-badge]][js-server-sdk-common-edge-link] | [Common Server Edge][package-shared-sdk-server-edge-issues] | [![Actions Status][shared-sdk-server-edge-ci-badge]][shared-sdk-server-edge-ci] |
+| [@launchdarkly/openfeature-js-server-common](packages/shared/openfeature-server-common/README.md) | [![NPM][openfeature-js-server-common-npm-badge]][openfeature-js-server-common-npm-link] | [OpenFeature Server Common][package-shared-openfeature-server-common-issues] | [![Actions Status][shared-openfeature-server-common-ci-badge]][shared-openfeature-server-common-ci] |
 
 | Store Packages                                                                              | npm                                                       | issues                                | tests                                                         |
 | ------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------- |
@@ -251,3 +253,15 @@ We encourage pull requests and other contributions from the community. Check out
 [sdk-react-npm-badge]: https://img.shields.io/npm/v/@launchdarkly/react-sdk.svg?style=flat-square
 [sdk-react-npm-link]: https://www.npmjs.com/package/@launchdarkly/react-sdk
 [package-sdk-react-issues]: https://github.com/launchdarkly/js-core/issues?q=is%3Aissue+is%3Aopen+label%3A%22package%3A+sdk%2Freact%22+
+[//]: # 'shared/openfeature-server-common'
+[openfeature-js-server-common-npm-badge]: https://img.shields.io/npm/v/@launchdarkly/openfeature-js-server-common.svg?style=flat-square
+[openfeature-js-server-common-npm-link]: https://www.npmjs.com/package/@launchdarkly/openfeature-js-server-common
+[shared-openfeature-server-common-ci-badge]: https://github.com/launchdarkly/js-core/actions/workflows/openfeature-server-common.yaml/badge.svg
+[shared-openfeature-server-common-ci]: https://github.com/launchdarkly/js-core/actions/workflows/openfeature-server-common.yaml
+[package-shared-openfeature-server-common-issues]: https://github.com/launchdarkly/js-core/issues?q=is%3Aissue+is%3Aopen+label%3A%22package%3A+shared%2Fopenfeature-server-common%22+
+[//]: # 'sdk/openfeature-node-server'
+[sdk-openfeature-node-server-ci-badge]: https://github.com/launchdarkly/js-core/actions/workflows/openfeature-node-server.yaml/badge.svg
+[sdk-openfeature-node-server-ci]: https://github.com/launchdarkly/js-core/actions/workflows/openfeature-node-server.yaml
+[sdk-openfeature-node-server-npm-badge]: https://img.shields.io/npm/v/@launchdarkly/openfeature-node-server.svg?style=flat-square
+[sdk-openfeature-node-server-npm-link]: https://www.npmjs.com/package/@launchdarkly/openfeature-node-server
+[package-sdk-openfeature-node-server-issues]: https://github.com/launchdarkly/js-core/issues?q=is%3Aissue+is%3Aopen+label%3A%22package%3A+sdk%2Fopenfeature-node-server%22+

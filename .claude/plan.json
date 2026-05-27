@@ -1,0 +1,6 @@
+{
+  "holistic_branch": "skz/sdk-2213/openfeature-migration",
+  "jira_subtasks": false,
+  "worktrees": true,
+  "budget": { "target": 400, "ceiling": 800 }
+}
