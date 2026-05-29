@@ -42,13 +42,12 @@
       "requires": [],
       "load": null,
       "raw_lines": null,
-      "final_load": null,
+      "final_load": 93,
       "oversize_reason": null,
       "jira_subtask": "SDK-2309",
       "status": "merged",
       "pr": 1352,
       "merged_at": "2026-05-26T22:21:56Z",
-      "final_load": 93,
       "final_raw_lines": 197
     },
     {
@@ -89,11 +88,13 @@
       "extraction_notes": "package.json: add only runtime dependencies (@launchdarkly/js-client-sdk-common, https-proxy-agent, launchdarkly-eventsource); leave jest devdeps + test/contract-test scripts for later slices. Scope grew during PR #1393 review to include platform unit tests + testHelpers + a package-level .gitignore -- holistic was reconciled to atomic's reviewed content (same way advance reconciles from main).",
       "load": 587,
       "raw_lines": 590,
-      "final_load": null,
-      "oversize_reason": null,
+      "final_load": 867,
+      "oversize_reason": "Platform unit tests + testHelpers added during PR #1393 review.",
       "jira_subtask": "SDK-2412",
-      "status": "in-flight",
-      "pr": 1393
+      "status": "merged",
+      "pr": 1393,
+      "final_raw_lines": 1185,
+      "merged_at": "2026-05-29T15:56:42Z"
     },
     {
       "slug": "port-client",
@@ -101,7 +102,6 @@
       "branch": "skz/sdk-2195/node-client-sdk-next-port-client",
       "paths": [
         "packages/sdk/node-client/__tests__/index.test.ts",
-        "packages/sdk/node-client/jest.config.json",
         "packages/sdk/node-client/package.json",
         "packages/sdk/node-client/src/LDClient.ts",
         "packages/sdk/node-client/src/LDCommon.ts",
@@ -131,8 +131,8 @@
       "final_load": null,
       "oversize_reason": null,
       "jira_subtask": "SDK-2312",
-      "status": "planned",
-      "pr": null
+      "status": "in-flight",
+      "pr": 1400
     },
     {
       "slug": "contract-tests",
@@ -227,10 +227,11 @@
       "title": "feat: Allow storage override in node-client-sdk",
       "branch": "skz/sdk-2195/node-client-sdk-next-storage-override",
       "paths": [
+        "packages/sdk/node-client/__tests__/options.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodePlatform.test.ts",
         "packages/sdk/node-client/src/NodeOptions.ts",
         "packages/sdk/node-client/src/options.ts",
         "packages/sdk/node-client/src/platform/NodePlatform.ts",
-        "packages/sdk/node-client/__tests__/options.test.ts",
         "packages/sdk/node-client/temp_docs/MIGRATION.md"
       ],
       "provides": [
