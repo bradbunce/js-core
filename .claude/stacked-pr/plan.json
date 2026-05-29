@@ -1,0 +1,277 @@
+{
+  "tool": "sculptor",
+  "jira": "SDK-2195",
+  "feature": "node-client-sdk-next",
+  "holistic_branch": "skz/sdk-2195/node-client-sdk-next",
+  "created": "2026-05-04",
+  "replanned_at": "2026-05-28",
+  "budget": {
+    "target": 400,
+    "ceiling": 800
+  },
+  "pivots": [],
+  "slices": [
+    {
+      "slug": "scaffold",
+      "title": "chore: Scaffold packages/sdk/node-client workspace",
+      "branch": "skz/sdk-2195/node-client-sdk-next-scaffold",
+      "paths": [
+        ".gitignore",
+        ".release-please-manifest.json",
+        "package.json",
+        "packages/sdk/node-client/.eslintrc.cjs",
+        "packages/sdk/node-client/CHANGELOG.md",
+        "packages/sdk/node-client/LICENSE",
+        "packages/sdk/node-client/README.md",
+        "packages/sdk/node-client/jest.config.json",
+        "packages/sdk/node-client/package.json",
+        "packages/sdk/node-client/src/index.ts",
+        "packages/sdk/node-client/tsconfig.eslint.json",
+        "packages/sdk/node-client/tsconfig.json",
+        "packages/sdk/node-client/tsconfig.ref.json",
+        "packages/sdk/node-client/tsup.config.js",
+        "packages/sdk/node-client/typedoc.json",
+        "release-please-config.json",
+        "tsconfig.json"
+      ],
+      "provides": [
+        "@launchdarkly/node-client-sdk package skeleton",
+        "release-please wiring for node-client",
+        "jest config + placeholder index.ts entry"
+      ],
+      "requires": [],
+      "load": null,
+      "raw_lines": null,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2309",
+      "status": "merged",
+      "pr": 1352,
+      "merged_at": "2026-05-26T22:21:56Z",
+      "final_load": 93,
+      "final_raw_lines": 197
+    },
+    {
+      "slug": "port-platform",
+      "title": "feat: Add Node platform abstraction for node-client",
+      "branch": "skz/sdk-2195/node-client-sdk-next-port-platform",
+      "paths": [
+        "packages/sdk/node-client/.gitignore",
+        "packages/sdk/node-client/__tests__/testHelpers.ts",
+        "packages/sdk/node-client/__tests__/platform/HeaderWrapper.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodeCrypto.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodeEncoding.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodeInfo.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodePlatform.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodeRequests.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodeResponse.test.ts",
+        "packages/sdk/node-client/__tests__/platform/NodeStorage.test.ts",
+        "packages/sdk/node-client/package.json",
+        "packages/sdk/node-client/src/platform/HeaderWrapper.ts",
+        "packages/sdk/node-client/src/platform/NodeCrypto.ts",
+        "packages/sdk/node-client/src/platform/NodeEncoding.ts",
+        "packages/sdk/node-client/src/platform/NodeInfo.ts",
+        "packages/sdk/node-client/src/platform/NodePlatform.ts",
+        "packages/sdk/node-client/src/platform/NodeRequests.ts",
+        "packages/sdk/node-client/src/platform/NodeResponse.ts",
+        "packages/sdk/node-client/src/platform/NodeStorage.ts",
+        "packages/sdk/node-client/tsconfig.json"
+      ],
+      "provides": [
+        "Node platform implementation (HTTP, crypto, encoding, info, storage, headers)",
+        "platform unit tests + testHelpers (added during PR #1393 review)",
+        "runtime dependencies (@launchdarkly/js-client-sdk-common, https-proxy-agent, launchdarkly-eventsource)",
+        "modernized SDK tsconfig (module=ESNext, moduleResolution=bundler, esModuleInterop, types, skipLibCheck)"
+      ],
+      "requires": [
+        "@launchdarkly/node-client-sdk package skeleton"
+      ],
+      "extraction_notes": "package.json: add only runtime dependencies (@launchdarkly/js-client-sdk-common, https-proxy-agent, launchdarkly-eventsource); leave jest devdeps + test/contract-test scripts for later slices. Scope grew during PR #1393 review to include platform unit tests + testHelpers + a package-level .gitignore -- holistic was reconciled to atomic's reviewed content (same way advance reconciles from main).",
+      "load": 587,
+      "raw_lines": 590,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2412",
+      "status": "in-flight",
+      "pr": 1393
+    },
+    {
+      "slug": "port-client",
+      "title": "feat: Port node-client onto @launchdarkly/js-client-sdk-common",
+      "branch": "skz/sdk-2195/node-client-sdk-next-port-client",
+      "paths": [
+        "packages/sdk/node-client/__tests__/index.test.ts",
+        "packages/sdk/node-client/jest.config.json",
+        "packages/sdk/node-client/package.json",
+        "packages/sdk/node-client/src/LDClient.ts",
+        "packages/sdk/node-client/src/LDCommon.ts",
+        "packages/sdk/node-client/src/LDPlugin.ts",
+        "packages/sdk/node-client/src/NodeClient.ts",
+        "packages/sdk/node-client/src/NodeDataManager.ts",
+        "packages/sdk/node-client/src/NodeOptions.ts",
+        "packages/sdk/node-client/src/basicLogger.ts",
+        "packages/sdk/node-client/src/index.ts",
+        "packages/sdk/node-client/src/options.ts",
+        "packages/sdk/node-client/temp_docs/MIGRATION.md"
+      ],
+      "provides": [
+        "LDClient public API + createClient export",
+        "NodeClient + NodeDataManager + options + basicLogger",
+        "jest test infrastructure (jest.config.json + test script + devdeps)",
+        "MIGRATION.md sections for hooks, inspectors, plugins, connection-mode runtime API, applicationInfo, proxy support, TLS config"
+      ],
+      "requires": [
+        "Node platform implementation (HTTP, crypto, encoding, info, storage, headers)",
+        "runtime dependencies (@launchdarkly/js-client-sdk-common, https-proxy-agent, launchdarkly-eventsource)",
+        "@launchdarkly/node-client-sdk package skeleton"
+      ],
+      "extraction_notes": "package.json: add only jest devdeps (@types/jest, @types/node, jest, ts-jest) + `test: jest` script. Runtime deps are already on main from port-platform; do not re-introduce them. Contract-test scripts + js-test-helpers belong to the contract-tests slice. MIGRATION.md additions: this slice owns NEW sections covering hooks (eval/identify/track), inspectors, plugins + applicationInfo, connection-mode runtime API (setConnectionMode), AND port-platform's deferred docs (proxy support via https-proxy-agent, TLS / tlsParams options). Other MIGRATION.md edits belong to storage-override (its own section) and archive (final doc-pass). Watch for load creep -- if final_load crosses the 800 ceiling, accept a retrospective oversize_reason: \"Comprehensive MIGRATION.md update batched with the largest port slice for context\" rather than re-carving mid-stack.",
+      "load": 759,
+      "raw_lines": 770,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2312",
+      "status": "planned",
+      "pr": null
+    },
+    {
+      "slug": "contract-tests",
+      "title": "test: Add contract tests and CI workflow for node-client SDK",
+      "branch": "skz/sdk-2195/node-client-sdk-next-contract-tests",
+      "paths": [
+        ".github/workflows/node-client.yml",
+        "package.json",
+        "packages/sdk/node-client/contract-tests/README.md",
+        "packages/sdk/node-client/contract-tests/package.json",
+        "packages/sdk/node-client/contract-tests/run-contract-tests.sh",
+        "packages/sdk/node-client/contract-tests/src/index.ts",
+        "packages/sdk/node-client/contract-tests/src/log.ts",
+        "packages/sdk/node-client/contract-tests/src/sdkClientEntity.ts",
+        "packages/sdk/node-client/contract-tests/testharness-suppressions-fdv2.txt",
+        "packages/sdk/node-client/contract-tests/testharness-suppressions.txt",
+        "packages/sdk/node-client/contract-tests/tsconfig.json",
+        "packages/sdk/node-client/contract-tests/tsconfig.ref.json",
+        "packages/sdk/node-client/package.json"
+      ],
+      "provides": [
+        "node-client contract-test workspace (registered in root package.json workspaces)",
+        "CI workflow exercising the contract-test harness",
+        "local run-contract-tests.sh runner and npm scripts (contract-tests, contract-test-service)"
+      ],
+      "requires": [
+        "LDClient public API + createClient export"
+      ],
+      "extraction_notes": "Root package.json: add `packages/sdk/node-client/contract-tests` to the workspaces array (single-line addition; other slices touching root package.json own different lines). node-client package.json: add only `contract-tests` + `contract-test-service` scripts and `launchdarkly-js-test-helpers` devdep -- runtime deps + jest infrastructure are already on main from earlier slices. sdkClientEntity.ts + testharness-suppressions*.txt ship at baseline coverage here; additional capabilities + new command handlers belong to the contract-tests-features slice.",
+      "load": 243,
+      "raw_lines": 495,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2314",
+      "status": "planned",
+      "pr": null
+    },
+    {
+      "slug": "contract-tests-features",
+      "title": "test: Declare common-base capabilities + wire associated harness commands",
+      "branch": "skz/sdk-2195/node-client-sdk-next-contract-tests-features",
+      "paths": [
+        "packages/sdk/node-client/contract-tests/src/index.ts",
+        "packages/sdk/node-client/contract-tests/src/sdkClientEntity.ts",
+        "packages/sdk/node-client/contract-tests/testharness-suppressions-fdv2.txt",
+        "packages/sdk/node-client/contract-tests/testharness-suppressions.txt"
+      ],
+      "provides": [
+        "additional harness capabilities declared: anonymous-redaction, strongly-typed, event-gzip, flag-change-listeners, tls:skip-verify-peer, tls:custom-ca",
+        "TLS / proxy / event-gzip wiring in makeSdkConfig (proxy wiring lands here even though the harness's http-proxy capability is deferred -- see SDK follow-up)",
+        "command handlers for RegisterFlagChangeListener / UnregisterListener"
+      ],
+      "requires": [
+        "node-client contract-test workspace",
+        "LDClient public API + createClient export"
+      ],
+      "extraction_notes": "Extends the base contract-tests slice. index.ts owns just the additional capability declarations beyond the base list. sdkClientEntity.ts owns the new makeSdkConfig wiring (tls / proxy / event-gzip) and the new doCommand cases (context utilities + flag change listeners). Suppressions files capture any tests that need to wait on upstream / fixture work.",
+      "load": 200,
+      "raw_lines": 280,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2422",
+      "status": "planned",
+      "pr": null
+    },
+    {
+      "slug": "hello",
+      "title": "chore: Add hello-node-client example app",
+      "branch": "skz/sdk-2195/node-client-sdk-next-hello",
+      "paths": [
+        "packages/sdk/node-client/examples/hello-node-client/README.md",
+        "packages/sdk/node-client/examples/hello-node-client/package.json",
+        "packages/sdk/node-client/examples/hello-node-client/src/index.ts",
+        "packages/sdk/node-client/examples/hello-node-client/tsconfig.json"
+      ],
+      "provides": [
+        "hello-node-client example app"
+      ],
+      "requires": [
+        "LDClient public API + createClient export"
+      ],
+      "load": 50,
+      "raw_lines": 75,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2313",
+      "status": "planned",
+      "pr": null
+    },
+    {
+      "slug": "storage-override",
+      "title": "feat: Allow storage override in node-client-sdk",
+      "branch": "skz/sdk-2195/node-client-sdk-next-storage-override",
+      "paths": [
+        "packages/sdk/node-client/src/NodeOptions.ts",
+        "packages/sdk/node-client/src/options.ts",
+        "packages/sdk/node-client/src/platform/NodePlatform.ts",
+        "packages/sdk/node-client/__tests__/options.test.ts",
+        "packages/sdk/node-client/temp_docs/MIGRATION.md"
+      ],
+      "provides": [
+        "caller-supplied storage override on NodeOptions",
+        "file-backed NodeStorage preserved as the default",
+        "MIGRATION.md section for storage override"
+      ],
+      "requires": [
+        "LDClient public API + createClient export",
+        "Node platform implementation (HTTP, crypto, encoding, info, storage, headers)"
+      ],
+      "extraction_notes": "SDK-2420. Open design question carried over from PR #1393 review: discriminated-union shape `storage: { type: 'file'; localStoragePath } | { type: 'custom'; implementation: NCStorage }` vs two independent fields (`localStoragePath` + `storage`). Resolve in the PR thread; the implementation can be revised before merge. MIGRATION.md edit is scoped to a NEW section on storage override only -- do not touch sections owned by port-client (hooks/inspectors/plugins/connection-mode/applicationInfo/proxy/TLS) or archive (doc-finalization pass).",
+      "load": 165,
+      "raw_lines": 220,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2420",
+      "status": "planned",
+      "pr": null
+    },
+    {
+      "slug": "archive",
+      "title": "chore: Archive standalone node-client-sdk repo and update docs",
+      "branch": "skz/sdk-2195/node-client-sdk-next-archive",
+      "paths": [
+        ".gitignore",
+        "packages/sdk/node-client/temp_docs/MIGRATION.md"
+      ],
+      "provides": [
+        "final MIGRATION.md doc-pass (formatting, link cleanup, removal of experimental warnings if appropriate)",
+        "remove .claude/stacks gitignore (now tracked on holistic)"
+      ],
+      "requires": [],
+      "extraction_notes": "MIGRATION.md edit is the final doc-pass only -- formatting, link cleanup, removing the experimental warning in the README/MIGRATION if production-ready, and any consolidation. Feature-specific MIGRATION sections are owned by port-client and storage-override; do not duplicate or restructure them here.",
+      "load": 38,
+      "raw_lines": 124,
+      "final_load": null,
+      "oversize_reason": null,
+      "jira_subtask": "SDK-2315",
+      "status": "planned",
+      "pr": null
+    }
+  ]
+}

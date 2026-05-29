@@ -31,4 +31,18 @@ jobs:
         with:
           workspace_name: '@launchdarkly/node-client-sdk'
           workspace_path: packages/sdk/node-client
-      # TODO: Add contract tests
+      - name: Install contract test service dependencies
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+        run: yarn workspace @launchdarkly/node-client-sdk-contract-tests install --no-immutable
+      - name: Build shared contract test utils
+        run: yarn workspace @launchdarkly/js-contract-test-utils build
+      - name: Build the test service
+        run: yarn workspace @launchdarkly/node-client-sdk-contract-tests build
+      - name: Launch the test service in the background
+        run: yarn workspace @launchdarkly/node-client-sdk-contract-tests start 2>&1 &
+      - uses: launchdarkly/gh-actions/actions/contract-tests@0b3ff8f7ffc27033ba68fe8e98cf9dd263887147 # contract-tests-v1.0.2
+        with:
+          test_service_port: 8000
+          token: ${{ secrets.GITHUB_TOKEN }}
+          extra_params: '--skip-from=./packages/sdk/node-client/contract-tests/testharness-suppressions.txt -stop-service-at-end'

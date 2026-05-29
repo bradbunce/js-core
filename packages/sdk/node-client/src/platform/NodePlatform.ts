@@ -19,7 +19,11 @@ export default class NodePlatform implements platform.Platform {
   requests: platform.Requests;
 
   constructor(logger: LDLogger, options: NodeOptions) {
-    this.storage = getNodeStorage(options.localStoragePath, logger);
+    if (options.storage?.type === 'custom') {
+      this.storage = options.storage.implementation;
+    } else {
+      this.storage = getNodeStorage(options.storage?.localStoragePath, logger);
+    }
     this.requests = new NodeRequests(options.tlsParams, options.enableEventCompression);
   }
 }

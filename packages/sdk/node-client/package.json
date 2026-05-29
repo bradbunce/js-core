@@ -38,7 +38,9 @@
     "build": "tsup",
     "lint": "eslint . --ext .ts",
     "lint:fix": "yarn lint --fix",
-    "test": "jest"
+    "test": "jest",
+    "contract-test-service": "yarn workspace @launchdarkly/node-client-sdk-contract-tests run build && yarn workspace @launchdarkly/node-client-sdk-contract-tests run start",
+    "contract-tests": "./contract-tests/run-contract-tests.sh"
   },
   "dependencies": {
     "@launchdarkly/js-client-sdk-common": "workspace:^",
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
+    "@types/node": "^25.9.1",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "eslint": "^8.45.0",
