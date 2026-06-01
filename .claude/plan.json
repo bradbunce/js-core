@@ -2,5 +2,5 @@
   "holistic_branch": "skz/sdk-2195/node-client-sdk-next-port-client",
   "jira_subtasks": false,
   "worktrees": false,
-  "budget": { "target": 400, "ceiling": 800 }
+  "budget": { "target": 500, "ceiling": 1000 }
 }
