@@ -162,7 +162,13 @@ export default class NodeStorage implements Storage {
       await this._atomicWriteToFile(new Map(this._cache));
     });
 
-    this._flushQueue = flush.catch(() => {});
+    // Batched callers chain off _flushQueue; log here so a failed write is never silently
+    // masked for callers that did not directly await this flush.
+    this._flushQueue = flush.catch((error) => {
+      this._logger?.error(
+        `Storage flush failed: ${error instanceof Error ? error.message : error}`,
+      );
+    });
     return flush;
   }
 }
