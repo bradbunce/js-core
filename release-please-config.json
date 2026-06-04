@@ -160,6 +160,12 @@
         "src/index.ts"
       ]
     },
+    "packages/sdk/vue": {
+      "bump-minor-pre-major": true,
+      "extra-files": [
+        "src/client/LDVueClient.ts"
+      ]
+    },
     "packages/sdk/server-node": {
       "extra-files": [
         "src/platform/NodeInfo.ts",
